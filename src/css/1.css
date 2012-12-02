@@ -1,0 +1,14 @@
+/*tablero*/
+body{
+	background: #333;
+}
+.p_ply{
+}
+#p_ply0{
+	float: left;
+	background: #333;
+}
+#p_ply1{
+	float: right;
+	background: #999;
+}

@@ -13,18 +13,61 @@
 
   <body>
 
-    <div>
-      <div id="p_ply1" class="p_ply" style="height: 300px; width: 50%; float:left; background: red" >&nbsp;</div>
-      <div id="p_ply2" class="p_ply" style="height: 300px; width: 50%; float:right;background: blue" >&nbsp;</div>
-    </div>
+    <div id="p_ply0" class="p_ply" >&nbsp;</div>
+    <div id="p_ply1" class="p_ply" >&nbsp;</div>
 
     <script src="src/js/zepto.js"></script>
     <script>
+
+    player = function(){
+      var height;
+      var width;
+    }
+
+    var ply = {};
+    ply[0] = new player();
+    ply[1] = new player();
+
+    //init
+    function init(){
+      ply[0].height = 100;
+      ply[1].height = 100;
+      ply[0].width = 50;
+      ply[1].width = 50;
+
+      $('#p_ply0').css('width', ply[0].width + '%');
+      $('#p_ply1').css('width', ply[1].width + '%');
+      $('#p_ply0').css('height', ply[0].height + '%');
+      $('#p_ply1').css('height', ply[1].height + '%');
+    }
+    //ditada
+    function ditada(element){
+      n_ply = parseInt(element.attr('id').replace('p_ply', ''));
+
+      ply[n_ply].width += 2.5;
+      t_width = $('#p_ply' + n_ply).css('width', ply[n_ply].width + '%');
+
+      n_ply = (n_ply+1)%2;
+      
+      ply[n_ply].width -= 2.5;
+      t_width = $('#p_ply' + n_ply).css('width', ply[n_ply].width + '%');
+
+      if ( ply[0].width == 0 || ply[1].width == 0 ){
+        alert('joc finalitzat!');
+      }
+    }
+
+    //ready
     Zepto(function($){
+      init();
       $('.p_ply').on('click', function(){
-        $(this).css('width', '25%');
+        ditada($(this));
       });
-      alert('Ready to Zepto!');
+
+
+
+
+      console.log('Ready to Zepto!');
     })
     </script>
 
