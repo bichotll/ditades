@@ -19,6 +19,8 @@
     <script src="src/js/zepto.js"></script>
     <script>
 
+    var game;
+
     player = function(){
       var height;
       var width;
@@ -30,6 +32,8 @@
 
     //init
     function init(){
+      game = true;
+ 
       ply[0].height = 100;
       ply[1].height = 100;
       ply[0].width = 50;
@@ -53,6 +57,7 @@
       t_width = $('#p_ply' + n_ply).css('width', ply[n_ply].width + '%');
 
       if ( ply[0].width == 0 || ply[1].width == 0 ){
+        game = false;
         alert('joc finalitzat!');
       }
     }
@@ -61,9 +66,14 @@
     Zepto(function($){
       init();
       $('.p_ply').on('click', function(){
-        ditada($(this));
+        if ( game == true )
+          ditada($(this));
+        else {
+          if(confirm('Vols iniciar un altre joc?')){
+            init();
+          }
+        }
       });
-
 
 
 
