@@ -6,18 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Le styles -->
+    <link href="src/css/0.css" rel="stylesheet">
     <link href="src/css/1.css" rel="stylesheet">
 
   </head>
 
-  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+  <body>
 
     <div>
-      <div style="height: 300px; width: 50%; float:left; background: red" >test</div>
-      <div style="height: 300px; width: 50%; float:right;background: blue" ></div>
+      <div id="p_ply1" class="p_ply" style="height: 300px; width: 50%; float:left; background: red" >&nbsp;</div>
+      <div id="p_ply2" class="p_ply" style="height: 300px; width: 50%; float:right;background: blue" >&nbsp;</div>
     </div>
 
     <script src="src/js/zepto.js"></script>
+    <script>
+    Zepto(function($){
+      $('.p_ply').on('click', function(){
+        $(this).css('width', '25%');
+      });
+      alert('Ready to Zepto!');
+    })
+    </script>
 
   </body>
 </html>
