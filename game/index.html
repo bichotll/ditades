@@ -13,12 +13,43 @@
 
   <body>
 
+    <!-- The Templates -->
+    <script type="text/template" id="tmp_game_end">
+
+        <div data-role="header">
+            <h1>Backbone.js + jQuery Mobile</h1>
+        </div>
+
+        <div data-role="content">
+            <h3>Application Template for using Backbone.js and jQuery Mobile.</h3>
+            <p>Backbone.js is used for code organization (Models, Views) and "routing".</p>
+            <p>jQuery Mobile is used for its mobile styles and widgets. The routing and navigation capabilities of jQuery Mobile are disbled to let Backbone.js handle these requirements.</p>
+            <p>This is the Home page. It was created dynamically using an underscore.js template.</p>
+            <p>Navigate to:</p>
+            <ul data-role="listview"  data-inset="true">
+                <li><a href="#page1">Page 1</a></li>
+                <li><a href="#page2">Page 2</a></li>
+            </ul>
+        </div>
+
+    </script>
+    <script type="text/template" id="tmp_game">
+
+        <div data-role="header">
+            <h1>Backbone.js + jQuery Mobile</h1>
+        </div>
+
+    </script>
+
     <div id="p_ply0" class="p_ply" >&nbsp;</div>
     <div id="p_ply1" class="p_ply" >&nbsp;</div>
 
-    <script src="src/js/cordoba-2.1.0.js"></script>
-    <script src="src/js/quo.js"></script>
-    <script src="src/js/zepto.js"></script>
+    <script src="../src/js/zepto.js"></script>
+    <script src="../src/js/cordoba-2.1.0.js"></script>
+    <script src="../src/js/quo.js"></script>
+    <script src="../src/js/underscore.js"></script>
+    <script src="../src/js/backbone.js"></script>
+    <script src="../src/js/game.js"></script>
     <script>
 
     var game;
@@ -39,7 +70,7 @@
       ply[0].height = 100;
       ply[1].height = 100;
       ply[0].width = 50;
-      ply[1].width = 50;
+      ply[1].width = 50;(
 
       $('#p_ply0').css('width', ply[0].width + '%');
       $('#p_ply1').css('width', ply[1].width + '%');
