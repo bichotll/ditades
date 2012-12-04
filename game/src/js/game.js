@@ -53,7 +53,7 @@ Game = Backbone.Model.extend({
         console.log('init tablero');
     },
     init_binding_p_ply: function(){
-        $('.p_ply').doubleTap(function(){
+        $('.p_ply').hammer({prevent_default:false}).on('release',function(){
             if ( game.attributes.game == true )
                 game.ditada($(this));
             else {
