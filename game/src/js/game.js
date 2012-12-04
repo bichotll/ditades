@@ -1,22 +1,27 @@
 /*vistas*/
-window.NewGame = Backbone.View.extend({
-
-    template:_.template($('#tmp_game').html()),
+/*NewGame = Backbone.View.extend({
+    template:_.template($('#tmp_game_start').html()),
 
     render:function (eventName) {
         $(this.el).html(this.template());
         return this;
     }
 });
-window.EndGame = Backbone.View.extend({
+Vista = Backbone.View.extend({
+   render: function(){
+       $(this.el).text('Hola Mundo');
+       return this;
+   }
+});
 
+EndGame = Backbone.View.extend({
     template:_.template($('#tmp_game_end').html()),
 
     render:function (eventName) {
         $(this.el).html(this.template());
         return this;
     }
-});
+});*/
 
 
 /*model*/
@@ -37,7 +42,7 @@ Game = Backbone.Model.extend({
         this.attributes.game = true;
         this.attributes.height = window.innerHeight;
         this.attributes.width = window.innerWidth;
-        this.attributes.width_click = this.attributes.width/30;
+        this.attributes.width_click = Math.round(this.attributes.width/30);
         ply[0].set({
                 element:'p_ply0',
                 height:this.attributes.height,
@@ -72,6 +77,7 @@ Game = Backbone.Model.extend({
         n_ply = (n_ply+1)%2;
 
         ply[n_ply].attributes.width -= game.attributes.width_click;
+        console.log(ply[n_ply].attributes.width);
         ply[n_ply].set_width();
 
         if ( ply[0].attributes.width <= 0 || ply[1].attributes.width <= 0 ){
@@ -88,7 +94,7 @@ Game = Backbone.Model.extend({
 Player = Backbone.Model.extend({
     initialize: function(){
         this.attributes.color = '#'+Math.floor(Math.random()*16777215).toString(16);
-        $('body').css('background',this.attributes.color);
+        //$('body').css('background',this.attributes.color);
     },
     defaults: {
         nom: 'player',
@@ -104,8 +110,9 @@ Player = Backbone.Model.extend({
         $('#'+this.attributes.element).css('width', this.attributes.width+'px');
     },
     set_width: function(){
+        if (this.attributes.width < 0)
+            this.attributes.width = 0;
         $('#'+this.attributes.element).css('width', this.attributes.width+'px');
-        console.log(this.attributes.width);
     }
 });
 
