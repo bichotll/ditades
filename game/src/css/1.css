@@ -1,12 +1,14 @@
 /*tablero*/
 body{
 	background: #333;
+	font-family: '04b03Regular';
 }
 .p_ply{
 }
 #p_ply0{
 	float: left;
 	background: #333;
+	position: absolute;
 }
 #p_ply1{
 	float: right;
