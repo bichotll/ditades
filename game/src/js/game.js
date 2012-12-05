@@ -17,6 +17,18 @@ Game = Backbone.Model.extend({
         this.attributes.height = window.innerHeight;
         this.attributes.width = window.innerWidth;
         this.attributes.width_click = Math.round(this.attributes.width/30);
+        if (localStorage.player1_name != '')
+            $('#n_ply0').html(localStorage.player1_name);
+        if (localStorage.player2_name != '')
+            $('#n_ply1').html(localStorage.player2_name);
+        if (localStorage.player1_wall != '' && localStorage.player1_wall != 'none' && typeof localStorage.player1_wall !== "undefined")
+            ply[0].attributes.color = localStorage.player1_wall;
+        if (localStorage.player2_wall != '' && localStorage.player2_wall != 'none' && typeof localStorage.player2_wall !== "undefined")
+            ply[1].attributes.color = localStorage.player2_wall;
+        if (localStorage.player1_sound != '')
+            ply[0].attributes.sound = localStorage.player2_wall;
+        if (localStorage.player2_sound != '')
+            ply[1].attributes.sound = localStorage.player2_wall;
         ply[0].set({
                 element:'p_ply0',
                 height:this.attributes.height,
@@ -47,12 +59,14 @@ Game = Backbone.Model.extend({
 
         ply[n_ply].attributes.width += game.attributes.width_click;
         ply[n_ply].set_width();
+        ply[n_ply].play_audio();
 
         n_ply = (n_ply+1)%2;
 
         ply[n_ply].attributes.width -= game.attributes.width_click;
         console.log(ply[n_ply].attributes.width);
         ply[n_ply].set_width();
+        ply[n_ply].play_audio();
 
         if ( ply[0].attributes.width <= 0 || ply[1].attributes.width <= 0 ){
             game.attributes.game = false;
@@ -68,7 +82,6 @@ Game = Backbone.Model.extend({
 Player = Backbone.Model.extend({
     initialize: function(){
         this.attributes.color = '#'+Math.floor(Math.random()*16777215).toString(16);
-        $('body').css('background',this.attributes.color);
     },
     defaults: {
         nom: 'player',
@@ -76,6 +89,7 @@ Player = Backbone.Model.extend({
         height: '',
         width: '',
         element: '',
+        sound: '',
     },
     set_dimensions: function(){
         console.log(this.attributes.color);
@@ -87,6 +101,13 @@ Player = Backbone.Model.extend({
         if (this.attributes.width < 0)
             this.attributes.width = 0;
         $('#'+this.attributes.element).css('width', this.attributes.width+'px');
+    },
+    play_audio: function(){
+        if ( this.attributes.sound != '' && this.attributes.sound != 'none' && typeof this.attributes.sound !== "undefined" ){
+            var url = 'file:///android_asset/www/src/sound/'+this.attributes.sound+'.mp3';
+            var my_media = new Media(url);
+            my_media.play();
+        }
     }
 });
 

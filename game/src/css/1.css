@@ -5,21 +5,20 @@ body{
 }
 .p_ply{
 }
-.p_ply span{
-	background: white;
-}
 #p_ply0{
 	float: left;
-	background: #333;
 	position: absolute;
-}
-#p_ply0 span{
-	float: left;
 }
 #p_ply1{
 	float: right;
-	background: #999;
 }
-#p_ply1 span{
-	float: right;
+.n_ply{
+	position: absolute;
+	z-index: 2;
+	color: #333;
+	background: white;
+	padding:5px;
+}
+#n_ply1{
+	right: 0;
 }
