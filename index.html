@@ -1,13 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Finger fight</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta HTTP-EQUIV="REFRESH" content="0; url=game/index.html">
+<html class="ui-mobile-rendering">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="src/css/jquery.mobile-1.0.1.min.css"/>
+    <link rel="stylesheet" href="src/css/font.css"/>
+    <link rel="stylesheet" href="src/css/1.css"/>
 
-  </head>
+    <!-- The Templates -->
+    <script type="text/template" id="home_tmp">
+        <div data-role="content">
+            <h1 id="logo">
+                DITADES
+            </h1>
+            <a data-role="button" data-theme="b" href="#start_game">
+                START GAME
+            </a>
+            <a data-role="button" data-theme="b" href="javascript:window.location='game/index.html'">
+                FAST GAME!
+            </a>
+            <br>
+            <a data-role="button" data-theme="c" href="#about">
+                ABOUT
+            </a>
+            <br><br>
+            <a data-role="button" data-theme="c" href="javascript:navigator.app.exitApp();">
+                EXIT ME!
+            </a>
+        </div>
+    </script>
 
-  <body>
-  </body>
+    <script type="text/template" id="about_tmp">
+        <div data-theme="a" data-role="header">
+            <h3>
+                About
+            </h3>
+            <a data-role="button" href="#back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left pag_back">
+                back
+            </a>
+        </div>
+        <div data-role="content">
+            <h3>
+            Game by: 
+            <a href="http://bic.cat" >BIChotll</a>
+            </h3>
+            <hr>
+            <h3>Sounds from: http://soundbible.com/tags-funny.html</h3>
+        </div>
+    </script>
+
+    <script type="text/template" id="start_game_tmp">
+        <div data-theme="a" data-role="header">
+            <h3>
+                Game options
+            </h3>
+            <a data-role="button" href="javascript:window.location='game/index.html'" data-icon="arrow-r" data-iconpos="right" class="ui-btn-right">
+                Start!
+            </a>
+            <a data-role="button" href="/" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left pag_back">
+                back
+            </a>
+        </div>
+        <div data-role="content">
+            <div data-role="fieldcontain">
+                <fieldset data-role="controlgroup">
+                    <label>
+                        Player 1
+                    </label>
+                    <input name="" id="player1_name" placeholder="" value="" type="text" />
+                </fieldset>
+            </div>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <a data-role="button" id="player1_wall" href="#start_game/select_wall/1">
+                        Wall
+                    </a>
+                </div>
+                <div class="ui-block-b">
+                    <select id="player1_sound">
+                        <option value="none">
+                            No sound
+                        </option>
+                        <option value="Belch-Kevan">Belch kevan</option>
+                        <option value="Commedy-Punch">Commedy punch</option>
+                        <option value="party-horn">Party horn</option>
+                        <option value="Uuuuuu-Paula">Uuuuuu paula</option>
+                        <option value="Bike-Horn">Bike horn</option>
+                        <option value="Funny-Girl-Laugh">Funny girl laugh</option>
+                        <option value="pew">Pew</option>
+                        <option value="Wont-Start-Fart">Wont start fart</option>
+                        <option value="Bleat">Bleat</option>
+                        <option value="i-love-you">I love you</option>
+                        <option value="Snorting-Pig">Snorting pig</option>
+                        <option value="Your-Mom">Your mom</option>
+                        <option value="Chuckle">Chuckle</option>
+                        <option value="Jump">Jump</option>
+                        <option value="Strange-Growl">Strange growl</option>
+                    </select>
+                </div>
+            </div>
+            <hr>
+            <div data-role="fieldcontain">
+                <fieldset data-role="controlgroup">
+                    <label>
+                        Player 2
+                    </label>
+                    <input name="" id="player2_name" placeholder="" value="" type="text" />
+                </fieldset>
+            </div>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <a data-role="button" id="player2_wall" href="#start_game/select_wall/2">
+                        Wall
+                    </a>
+                </div>
+                <div class="ui-block-b">
+                    <select id="player2_sound">
+                        <option value="none">
+                            No sound
+                        </option>
+                        <option value="Belch-Kevan">Belch kevan</option>
+                        <option value="Commedy-Punch">Commedy punch</option>
+                        <option value="party-horn">Party horn</option>
+                        <option value="Uuuuuu-Paula">Uuuuuu paula</option>
+                        <option value="Bike-Horn">Bike horn</option>
+                        <option value="Funny-Girl-Laugh">Funny girl laugh</option>
+                        <option value="pew">Pew</option>
+                        <option value="Wont-Start-Fart">Wont start fart</option>
+                        <option value="Bleat">Bleat</option>
+                        <option value="i-love-you">I love you</option>
+                        <option value="Snorting-Pig">Snorting pig</option>
+                        <option value="Your-Mom">Your mom</option>
+                        <option value="Chuckle">Chuckle</option>
+                        <option value="Jump">Jump</option>
+                        <option value="Strange-Growl">Strange growl</option>
+                    </select>
+                </div>
+            </div>
+            <br><br><br>
+            <a data-role="button" data-theme="b" href="javascript:window.location='game/index.html'">
+                START GAME!
+            </a>
+        </div>
+    </script>
+
+    <script type="text/template" id="select_wall_tmp">
+        <div data-theme="a" data-role="header">
+            <h3>
+                Select wall
+            </h3>
+            <a data-role="button" href="#start_game" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left pag_back">
+                back
+            </a>
+        </div>
+        <div data-role="content">
+            <h3>Generate color:</h3>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <a data-role="button" id="generar_color">
+                        Generate color
+                    </a>
+                </div>
+                <div class="ui-block-b">
+                    <a data-role="button" id="color_generat" href="#start_game">
+                        Ok
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <h3>Select stripe:</h3>
+            <div class="ui-grid-b">
+                <div class="ui-block-a">
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/1234.png)" href="#start_game">
+                        &nbsp;
+                    </a><br>
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/1306.png)" href="#start_game">
+                        &nbsp;
+                    </a><br>
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/1365.png)" href="#start_game">
+                        &nbsp;
+                    </a><br>
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/1389.png)" href="#start_game">
+                        &nbsp;
+                    </a><br>
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/1397.png)" href="#start_game">
+                        &nbsp;
+                    </a>
+                </div>
+                <div class="ui-block-b">
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/1408.png)" href="#start_game">
+                        &nbsp;
+                    </a><br>
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/4567.png)" href="#start_game">
+                        &nbsp;
+                    </a><br>
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/7890.png)" href="#start_game">
+                        &nbsp;
+                    </a><br>
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/1305.png)" href="#start_game">
+                        &nbsp;
+                    </a><br>
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/1358.png)" href="#start_game">
+                        &nbsp;
+                    </a>
+                </div>
+                <div class="ui-block-c">
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/1377.png)" href="#start_game">
+                        &nbsp;
+                    </a><br>
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/1396.png)" href="#start_game">
+                        &nbsp;
+                    </a><br>
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/1404.png)" href="#start_game">
+                        &nbsp;
+                    </a><br>
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/1416.png)" href="#start_game">
+                        &nbsp;
+                    </a><br>
+                    <a data-role="button" class="marcar_color_player" style="background: url(src/img/7410.png)" href="#start_game">
+                        &nbsp;
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <h3>None:</h3>
+            <a data-role="button" id="none" href="#start_game" >
+                None
+            </a>
+        </div>
+    </script>
+
+
+    <!-- The Scripts -->
+    <script src="src/js/cordova-2.1.0.js"></script>
+    <script src="src/js/jquery-1.7.1.min.js"></script>
+    <script src="src/js/jqm-config.js"></script>
+    <script src="src/js/jquery.mobile-1.0.1.min.js"></script>
+    <script src="src/js/underscore.js"></script>
+    <script src="src/js/backbone.js"></script>
+    <script src="src/js/main.js"></script>
+</head>
+
+<body></body>
+
 </html>

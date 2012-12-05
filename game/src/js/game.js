@@ -1,29 +1,3 @@
-/*vistas*/
-/*NewGame = Backbone.View.extend({
-    template:_.template($('#tmp_game_start').html()),
-
-    render:function (eventName) {
-        $(this.el).html(this.template());
-        return this;
-    }
-});
-Vista = Backbone.View.extend({
-   render: function(){
-       $(this.el).text('Hola Mundo');
-       return this;
-   }
-});
-
-EndGame = Backbone.View.extend({
-    template:_.template($('#tmp_game_end').html()),
-
-    render:function (eventName) {
-        $(this.el).html(this.template());
-        return this;
-    }
-});*/
-
-
 /*model*/
 Game = Backbone.Model.extend({
     initialize: function(){
@@ -94,7 +68,7 @@ Game = Backbone.Model.extend({
 Player = Backbone.Model.extend({
     initialize: function(){
         this.attributes.color = '#'+Math.floor(Math.random()*16777215).toString(16);
-        //$('body').css('background',this.attributes.color);
+        $('body').css('background',this.attributes.color);
     },
     defaults: {
         nom: 'player',
