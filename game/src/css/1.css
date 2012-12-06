@@ -11,6 +11,7 @@ body{
 }
 #p_ply1{
 	float: right;
+	background-position: right;
 }
 .n_ply{
 	position: absolute;

@@ -1,8 +1,6 @@
-*{
-	font-family: '04b03Regular';
-}
 #logo{
-	font-size: 60px;
+	font-size: 70px;
 	text-align: center;
 	text-shadow: 2px 2px 5px #999;
+	font-family: '04b03Regular';
 }
